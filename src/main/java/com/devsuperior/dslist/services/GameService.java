@@ -1,0 +1,22 @@
+package com.devsuperior.dslist.services;
+
+import com.devsuperior.dslist.entities.Game;
+import com.devsuperior.dslist.dto.GameMinimoDTO;
+import com.devsuperior.dslist.repositories.GameRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class GameService {
+
+    @Autowired
+    private GameRepository gameRepository;
+
+    public List<GameMinimoDTO> findAll() {
+        List<Game> result = gameRepository.findAll();
+        //transforma a lista de games com a variavel result em uma lista de gameMinimoDTO
+        return result.stream().map(GameMinimoDTO::new).toList();
+    }
+}
